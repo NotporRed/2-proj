@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Autobuso maršrutas (GTFS)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Maršrutas žemėlapyje</h1>
+    <p>Duomenys iš jūsų <strong>GTFS</strong> ZIP (<code>routes.txt</code>, <code>trips</code>, <code>stop_times</code>, <code>stops</code>, <code>shapes</code>).</p>
+  </header>
+  <main>
+    <section class="controls">
+      <label for="lineInput">Maršruto numeris / kodas</label>
+      <input id="lineInput" type="text" placeholder="Pvz. 10, 2G, N8" maxlength="16" autocomplete="off" />
+      <button id="btnPreview" type="button">Ieškoti</button>
+      <button id="btnFlip" type="button" disabled>Apversti kryptį</button>
+      <span id="status" class="status" aria-live="polite"></span>
+    </section>
+    <section id="map" class="map" role="application" aria-label="Maršruto žemėlapis"></section>
+    <aside id="stopsPanel" class="stops-panel" hidden></aside>
+  </main>
+  <div id="timetableModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-label="Stotelės tvarkaraštis">
+      <div class="modal-header">
+        <h2 id="modalTitle">Tvarkaraštis</h2>
+        <button id="btnCloseModal" class="modal-close" type="button" aria-label="Uždaryti">×</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

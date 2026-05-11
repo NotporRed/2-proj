@@ -1,0 +1,267 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #111;
+  background: #f4f6f8;
+}
+
+header {
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+header p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 320px);
+  grid-template-rows: auto 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  height: calc(100vh - 140px);
+  min-height: 420px;
+}
+
+.controls {
+  grid-column: 1 / -1;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controls label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.controls input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  min-width: 120px;
+}
+
+.controls button {
+  padding: 0.45rem 0.9rem;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background: #1d4ed8;
+}
+
+.controls button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.controls .hint {
+  flex-basis: 100%;
+  font-size: 0.8125rem;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+.controls .hint kbd {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+}
+
+.status {
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.status.error {
+  color: #b91c1c;
+}
+
+.status.ok {
+  color: #15803d;
+}
+
+.map {
+  grid-column: 1;
+  background: #e2e8f0;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  min-height: 360px;
+}
+
+.stops-panel {
+  grid-column: 2;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  overflow: auto;
+  font-size: 0.875rem;
+}
+
+.stops-panel h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.stops-panel ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.stops-panel .stops-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.stops-panel .stop-name {
+  flex: 1;
+  cursor: pointer;
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.stops-panel .stop-name:hover {
+  color: #1e40af;
+}
+
+.stops-panel li.miss {
+  color: #b45309;
+}
+
+.stops-panel .timetable {
+  margin-top: 0.8rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 0.6rem;
+}
+
+.stops-panel .timetable h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.stops-panel .timetable p {
+  margin: 0;
+  color: #64748b;
+}
+
+.stops-panel .timetable ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.modal-content {
+  position: relative;
+  width: min(700px, 92vw);
+  max-height: 85vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  color: #334155;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 0.9rem 1rem;
+}
+
+.modal-body p {
+  margin: 0;
+  color: #64748b;
+}
+
+.modal-body ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .map {
+    grid-column: 1;
+    min-height: 320px;
+  }
+
+  .stops-panel {
+    grid-column: 1;
+    max-height: 220px;
+  }
+}

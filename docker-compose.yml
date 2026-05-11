@@ -1,0 +1,35 @@
+services:
+  bus-api:
+    build: ./services/bus-api
+    environment:
+      FLASK_ENV: production
+      GTFS_ZIP_PATH: /data/gtfs/feed.zip
+    volumes:
+      - type: bind
+        source: "./data/gtfs/gtfs.zip"
+        target: /data/gtfs/feed.zip
+        read_only: true
+    networks: [backend]
+
+  geo-api:
+    build: ./services/geo-api
+    environment:
+      FLASK_ENV: production
+      NOMINATIM_URL: https://nominatim.openstreetmap.org
+    networks: [backend]
+
+  web:
+    build: ./services/web
+    ports:
+      - "5000:5000"
+    environment:
+      BUS_API_URL: http://bus-api:5001
+      GEO_API_URL: http://geo-api:5002
+    depends_on:
+      - bus-api
+      - geo-api
+    networks: [backend]
+
+networks:
+  backend:
+    driver: bridge
